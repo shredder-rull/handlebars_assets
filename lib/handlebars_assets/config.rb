@@ -7,11 +7,11 @@ module HandlebarsAssets
     extend self
 
     attr_writer :compiler, :compiler_runtime, :compiler_path, :ember, :multiple_frameworks,
-      :haml_options, :known_helpers, :known_helpers_only, :options,
-      :patch_files, :patch_path, :path_prefix, :slim_options, :template_namespace,
-      :precompile, :haml_enabled, :slim_enabled,
-      :handlebars_extensions, :hamlbars_extensions, :slimbars_extensions,
-      :amd, :handlebars_amd_path, :amd_with_template_namespace
+                :haml_options, :known_helpers, :known_helpers_only, :options,
+                :patch_files, :patch_path, :path_prefix, :slim_options, :template_namespace,
+                :precompile, :haml_enabled, :slim_enabled,
+                :handlebars_extensions, :hamlbars_extensions, :slimbars_extensions,
+                :amd, :handlebars_amd_path, :amd_with_template_namespace, :templates_path
 
     def compiler
       @compiler || 'handlebars.js'
@@ -127,6 +127,10 @@ module HandlebarsAssets
     # during configuration for the handlebars
     def handlebars_amd_path
       @handlebars_amd_path || 'handlebars'
+    end
+
+    def templates_path
+      @templates_path ||  Rails.root.join('app','assets','javascripts','templates')
     end
 
     private

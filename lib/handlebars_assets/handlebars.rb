@@ -14,10 +14,11 @@ module HandlebarsAssets
       attr_writer :source
 
       def append_patch(patch_file)
-        self.source += patch_source(patch_file)
+        self.source += sprockets[patch_file].to_s
       end
 
       def apply_patches_to_source
+        @enviroment = Sprockets::Environment
         if HandlebarsAssets::Config.patch_files.any?
           HandlebarsAssets::Config.patch_files.each do |patch_file|
             append_patch(patch_file)
@@ -48,6 +49,14 @@ module HandlebarsAssets
 
       def assets_path
         @assets_path ||= Pathname(HandlebarsAssets::Config.compiler_path)
+      end
+
+      def sprockets
+        @sprockets ||= begin
+          @sprockets = Sprockets::Environment.new
+          @sprockets.append_path(patch_path) if patch_path.present?
+          @sprockets
+        end
       end
     end
   end

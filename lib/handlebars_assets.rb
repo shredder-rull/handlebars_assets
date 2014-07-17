@@ -16,22 +16,24 @@ module HandlebarsAssets
   end
 
   def self.register_extensions(sprockets_environment)
-      Config.handlebars_extensions.each do |ext|
+    Config.handlebars_extensions.each do |ext|
+      sprockets_environment.register_engine(ext, HandlebarsTemplate)
+    end
+    if Config.haml_enabled? && Config.haml_available?
+      Config.hamlbars_extensions.each do |ext|
         sprockets_environment.register_engine(ext, HandlebarsTemplate)
       end
-      if Config.haml_enabled? && Config.haml_available?
-        Config.hamlbars_extensions.each do |ext|
-          sprockets_environment.register_engine(ext, HandlebarsTemplate)
-        end
+    end
+    if Config.slim_enabled? && Config.slim_available?
+      Config.slimbars_extensions.each do |ext|
+        sprockets_environment.register_engine(ext, HandlebarsTemplate)
       end
-      if Config.slim_enabled? && Config.slim_available?
-        Config.slimbars_extensions.each do |ext|
-          sprockets_environment.register_engine(ext, HandlebarsTemplate)
-        end
-      end
+    end
   end
 
 end
+
+require 'handlebars_assets/server'
 
 # Register the engine (which will register extension in the app)
 # or ASSUME using sprockets

@@ -1,3 +1,7 @@
+## 0.18 (2014-07-17)
+
+* Add server-side rendering
+
 ## 0.17 (2014-06-22)
 
 * Massive revamp - @AlexRiedler
