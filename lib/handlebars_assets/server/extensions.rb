@@ -20,7 +20,8 @@ module HandlebarsAssets
       end
 
       def context_with_templates
-        @context_with_templates ||= ExecJS.compile([apply_patches_to_source, templates_file].join('; '))
+        return @context_with_templates if @context_with_templates.present? and !Rails.env.development?
+        @context_with_templates = ExecJS.compile([apply_patches_to_source, templates_file].join('; '))
       end
 
       def templates_file

@@ -57,6 +57,19 @@ module HandlebarsAssets
           Rails.configuration.assets.paths.each do |path|
             @sprockets.append_path(path)
           end
+          HandlebarsAssets::Config.handlebars_extensions.each do |ext|
+            @environment.register_engine(ext, HandlebarsTemplate)
+          end
+          if HandlebarsAssets::Config.haml_enabled? && HandlebarsAssets::Config.haml_available?
+            HandlebarsAssets::Config.hamlbars_extensions.each do |ext|
+              @sprockets.register_engine(ext, HandlebarsAssets::HandlebarsTemplate)
+            end
+          end
+          if HandlebarsAssets::Config.slim_enabled? && HandlebarsAssets::Config.slim_available?
+            HandlebarsAssets::Config.slimbars_extensions.each do |ext|
+              @sprockets.register_engine(ext, HandlebarsAssets::HandlebarsTemplate)
+            end
+          end
           @sprockets
         end
       end
