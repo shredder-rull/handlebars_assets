@@ -16,7 +16,7 @@ module HandlebarsAssets
 
       def render_by_js(template_key, *args)
         locals = args.last.is_a?(Hash) ? args.pop : {}
-        context_with_templates.call("JST['#{template_key}']", locals)
+        context_with_templates.call("#{HandlebarsAssets::Config.template_namespace}['#{template_key}']", locals)
       end
 
       def context_with_templates
