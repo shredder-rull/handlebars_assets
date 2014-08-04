@@ -11,7 +11,7 @@ module HandlebarsAssets
                 :patch_files, :patch_path, :path_prefix, :slim_options, :template_namespace,
                 :precompile, :haml_enabled, :slim_enabled,
                 :handlebars_extensions, :hamlbars_extensions, :slimbars_extensions,
-                :amd, :handlebars_amd_path, :amd_with_template_namespace, :templates_path
+                :amd, :handlebars_amd_path, :amd_with_template_namespace, :templates_path,
                 :templates_file
 
     def compiler
