@@ -58,7 +58,7 @@ module HandlebarsAssets
             @sprockets.append_path(path)
           end
           HandlebarsAssets::Config.handlebars_extensions.each do |ext|
-            @environment.register_engine(ext, HandlebarsTemplate)
+            @sprockets.register_engine(ext, HandlebarsTemplate)
           end
           if HandlebarsAssets::Config.haml_enabled? && HandlebarsAssets::Config.haml_available?
             HandlebarsAssets::Config.hamlbars_extensions.each do |ext|
