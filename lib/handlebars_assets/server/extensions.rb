@@ -14,6 +14,19 @@ module HandlebarsAssets
         context_for(template, extra).call('template', locals)
       end
 
+      def render_by_js(template_key, *args)
+        locals = args.last.is_a?(Hash) ? args.pop : {}
+        context_with_templates.call("JST['#{template_key}']", locals)
+      end
+
+      def context_with_templates
+        @context_with_templates ||= ExecJS.compile([apply_patches_to_source, templates_file].join('; '))
+      end
+
+      def templates_file
+        sprockets[HandlebarsAssets::Config.templates_file].to_s
+      end
+
       protected
 
       def runtime

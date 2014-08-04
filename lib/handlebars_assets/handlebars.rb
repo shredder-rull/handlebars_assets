@@ -18,7 +18,6 @@ module HandlebarsAssets
       end
 
       def apply_patches_to_source
-        @enviroment = Sprockets::Environment
         if HandlebarsAssets::Config.patch_files.any?
           HandlebarsAssets::Config.patch_files.each do |patch_file|
             append_patch(patch_file)
@@ -55,9 +54,13 @@ module HandlebarsAssets
         @sprockets ||= begin
           @sprockets = Sprockets::Environment.new
           @sprockets.append_path(patch_path) if patch_path.present?
+          Rails.configuration.assets.paths.each do |path|
+            @sprockets.append_path(path)
+          end
           @sprockets
         end
       end
+
     end
   end
 end

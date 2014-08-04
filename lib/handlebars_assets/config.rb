@@ -12,6 +12,7 @@ module HandlebarsAssets
                 :precompile, :haml_enabled, :slim_enabled,
                 :handlebars_extensions, :hamlbars_extensions, :slimbars_extensions,
                 :amd, :handlebars_amd_path, :amd_with_template_namespace, :templates_path
+                :backend_templates_file
 
     def compiler
       @compiler || 'handlebars.js'
@@ -131,6 +132,10 @@ module HandlebarsAssets
 
     def templates_path
       @templates_path ||  Rails.root.join('app','assets','javascripts','templates')
+    end
+
+    def templates_file
+      @templates_file
     end
 
     private
