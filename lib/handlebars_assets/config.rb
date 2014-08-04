@@ -12,7 +12,7 @@ module HandlebarsAssets
                 :precompile, :haml_enabled, :slim_enabled,
                 :handlebars_extensions, :hamlbars_extensions, :slimbars_extensions,
                 :amd, :handlebars_amd_path, :amd_with_template_namespace, :templates_path
-                :backend_templates_file
+                :templates_file
 
     def compiler
       @compiler || 'handlebars.js'

@@ -31,6 +31,7 @@ module HandlebarsAssets
             HandlebarsAssets::Handlebars.render(#{tmpl.inspect}, variables).html_safe
             HBS
           end
+
         end
 
       end
